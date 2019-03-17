@@ -3,7 +3,7 @@
 # "to avoid continuing when errors or undefined variables are present"
 set -eu
 
-echo ls -l
+echo $( ls -l )
 
 # Include some helper functions
 . "includes.sh"
