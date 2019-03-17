@@ -16,5 +16,7 @@ RUN apk add bash
 RUN apk add coreutils
 
 COPY entrypoint.sh /entrypoint.sh
+COPY includes.sh /includes.sh
 RUN chmod 777 entrypoint.sh
+RUN chmod 777 includes.sh
 ENTRYPOINT ["/entrypoint.sh"]
