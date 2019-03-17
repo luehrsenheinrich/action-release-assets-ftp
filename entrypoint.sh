@@ -3,10 +3,12 @@
 # "to avoid continuing when errors or undefined variables are present"
 set -eu
 
+cd "$(dirname "$0")/..´
+
 ls -R .
 
 # Include some helper functions
-. "./includes.sh"
+. "$(dirname "$0")/includes.sh"
 
 # Ensure FTP server, username and password are set
 # IMPORTANT: secrets are accessible by anyone with write access to the repository!
