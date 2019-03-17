@@ -3,8 +3,11 @@
 # "to avoid continuing when errors or undefined variables are present"
 set -eu
 
-# Include some helper functions
-. "includes.sh"
+# Include useful functions
+. "$(dirname "$0")/includes.sh"
+
+# Change to the expected directory
+cd "$(dirname "$0")/.."
 
 # Ensure FTP server, username and password are set
 # IMPORTANT: secrets are accessible by anyone with write access to the repository!
