@@ -37,7 +37,7 @@ tag_name=$(jq -r .release.tag_name "$GITHUB_EVENT_PATH")
 
 echo "Handling release tag $tag_name"
 
-echo $assets
+echo $GITHUB_EVENT_PATH
 
 echo "Creating the temporary directory for the assets"
 mkdir tmp_assets
