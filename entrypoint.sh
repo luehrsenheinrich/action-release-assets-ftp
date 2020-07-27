@@ -37,6 +37,8 @@ tag_name=$(jq -r .release.tag_name "$GITHUB_EVENT_PATH")
 
 echo "Handling release tag $tag_name"
 
+echo assets
+
 echo "Creating the temporary directory for the assets"
 mkdir tmp_assets
 
@@ -49,7 +51,7 @@ do
   	asset_id=$(jq -r '.id' <<< "${asset}")
 	name=$(jq -r '.name' <<< "${asset}")
   	echo "Downloading ${name} to the temporary directory"
-	
+
 	FTP_USERNAME_ENC=$( urlencode ${FTP_USERNAME} )
 	FTP_PASSWORD_ENC=$( urlencode ${FTP_PASSWORD} )
 
@@ -57,7 +59,7 @@ do
 	ASSET_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/releases/assets/${asset_id}"
 	FILE="tmp_assets/${name}"
 	FTP_UPLOAD_URL="ftp://${FTP_USERNAME_ENC}:${FTP_PASSWORD_ENC}@${FTP_SERVER}/${WDEFAULT_REMOTE_DIR}"
-	
+
 	curl \
           -s \
 	  -L \
@@ -65,9 +67,9 @@ do
 	  -H "Accept:application/octet-stream" \
 	  -o "${FILE}" \
 	  "${ASSET_URL}"
-	
+
 	echo "Uploading ${name} to ${FTP_SERVER}"
-	
+
 	curl \
           -s \
 	  -T "${FILE}" \
